@@ -1,11 +1,9 @@
 package module
 
-import (
-	"awesomeProject/chip"
-)
+import "awesomeProject/chip"
 
 type LedTube8Digits struct {
-	C595         chip.Chip74hc595
+	chip.Chip74hc595
 	NumberToShow int
 }
 
@@ -24,7 +22,7 @@ func (led LedTube8Digits) Show() {
 		var data uint16
 		data = uint16(font[digits[i]])
 		data = (data << 8) | uint16(position[i])
-		led.C595.SendUint16(data)
+		led.SendUint16(data)
 	}
 
 }
